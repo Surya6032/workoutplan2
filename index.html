@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>The Aesthetics Protocol · 4-Day Edition v3.1 · Daily Warmup Routines + Post-Lift Cooldown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0B0C0E;--surface:#111316;--card:#181B20;--card-hover:#1E2128;
+  --border:#252830;--border-hi:#353A45;
+  --gold:#C9A96E;--gold-dim:#7A5F32;--gold-glow:rgba(201,169,110,0.10);
+  --steel:#5B8DB8;--steel-dim:rgba(91,141,184,0.15);
+  --violet:#8B72C8;--violet-dim:rgba(139,114,200,0.15);
+  --emerald:#4FA87A;--emerald-dim:rgba(79,168,122,0.15);
+  --coral:#C86B5B;--coral-dim:rgba(200,107,91,0.15);
+  --orange:#D4943A;--orange-dim:rgba(212,148,58,0.15);
+  --text:#ECEAE4;--soft:#A8ACBA;--muted:#5E6272;--dim:#363A44;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;min-height:100vh;}
+
+/* ANIMATIONS */
+@keyframes fadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes heroGlow{0%,100%{opacity:.55;transform:scale(1);}50%{opacity:.9;transform:scale(1.12);}}
+@keyframes barFill{from{width:0%;}to{width:var(--w);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.6;}}
+
+/* HERO */
+.hero{position:relative;padding:90px 24px 72px;text-align:center;overflow:hidden;background:var(--bg);}
+.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:700px;height:500px;
+  background:radial-gradient(ellipse at center,rgba(201,169,110,0.13) 0%,transparent 70%);
+  border-radius:50%;animation:heroGlow 6s ease-in-out infinite;pointer-events:none;z-index:0;}
+.hero>*{position:relative;z-index:1;}
+.hero-label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--gold-dim);border-radius:20px;padding:5px 14px;margin-bottom:22px;background:var(--gold-glow);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(38px,7vw,74px);font-weight:700;line-height:1.08;
+  background:linear-gradient(135deg,#e8d5a8 0%,var(--gold) 40%,#f0e0b0 70%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:18px;}
+.hero-sub{font-size:clamp(13px,2vw,16px);color:var(--soft);max-width:620px;margin:0 auto 30px;line-height:1.7;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.hero-tag{background:var(--card);border:1px solid var(--border-hi);border-radius:20px;padding:6px 16px;
+  font-size:12px;font-weight:600;color:var(--soft);letter-spacing:.04em;}
+
+/* STICKY NAV */
+.tab-nav{position:sticky;top:0;z-index:100;background:rgba(11,12,14,.92);border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.tab-nav-inner{display:flex;overflow-x:auto;scrollbar-width:none;max-width:1100px;margin:0 auto;}
+.tab-nav-inner::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;background:none;border:none;color:var(--muted);font-family:'Inter',sans-serif;font-size:12px;
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:18px 22px;cursor:pointer;
+  border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap;}
+.tab-btn:hover{color:var(--soft);}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+.tab-btn .new-badge{background:var(--gold);color:#000;font-size:9px;font-weight:800;padding:1px 5px;
+  border-radius:4px;margin-left:5px;vertical-align:middle;}
+
+/* PANELS */
+.tab-panel{display:none;max-width:1100px;margin:0 auto;padding:48px 24px 80px;animation:fadeIn .25s ease;}
+.tab-panel.active{display:block;}
+
+/* SECTION BADGE */
+.section-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:20px;}
+.sb-gold{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-dim);}
+.sb-steel{background:var(--steel-dim);color:var(--steel);border:1px solid rgba(91,141,184,.3);}
+.sb-violet{background:var(--violet-dim);color:var(--violet);border:1px solid rgba(139,114,200,.3);}
+.sb-emerald{background:var(--emerald-dim);color:var(--emerald);border:1px solid rgba(79,168,122,.3);}
+.sb-coral{background:var(--coral-dim);color:var(--coral);border:1px solid rgba(200,107,91,.3);}
+.sb-orange{background:var(--orange-dim);color:var(--orange);border:1px solid rgba(212,148,58,.3);}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;
+  transition:background .2s,border-color .2s;margin-bottom:16px;}
+.card:hover{background:var(--card-hover);border-color:var(--border-hi);}
+.card.accent-gold{border-left:3px solid var(--gold);}
+.card.accent-steel{border-left:3px solid var(--steel);}
+.card.accent-violet{border-left:3px solid var(--violet);}
+.card.accent-emerald{border-left:3px solid var(--emerald);}
+.card.accent-coral{border-left:3px solid var(--coral);}
+.card.accent-orange{border-left:3px solid var(--orange);}
+.card-title{font-size:15px;font-weight:800;color:var(--text);margin-bottom:10px;letter-spacing:.01em;}
+.card-sub{font-size:13px;color:var(--soft);line-height:1.65;}
+
+/* PILL */
+.pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 10px;border-radius:10px;margin:2px 3px 2px 0;}
+.pill-gold{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-dim);}
+.pill-steel{background:var(--steel-dim);color:var(--steel);border:1px solid rgba(91,141,184,.3);}
+.pill-violet{background:var(--violet-dim);color:var(--violet);border:1px solid rgba(139,114,200,.3);}
+.pill-emerald{background:var(--emerald-dim);color:var(--emerald);border:1px solid rgba(79,168,122,.3);}
+.pill-coral{background:var(--coral-dim);color:var(--coral);border:1px solid rgba(200,107,91,.3);}
+.pill-orange{background:var(--orange-dim);color:var(--orange);border:1px solid rgba(212,148,58,.3);}
+
+/* ALERT BOX */
+.alert-box{border-radius:12px;padding:18px 20px;margin-bottom:20px;display:flex;gap:14px;align-items:flex-start;}
+.alert-box.alert-coral{background:var(--coral-dim);border:1px solid rgba(200,107,91,.3);}
+.alert-box.alert-emerald{background:var(--emerald-dim);border:1px solid rgba(79,168,122,.3);}
+.alert-box.alert-gold{background:var(--gold-glow);border:1px solid var(--gold-dim);}
+.alert-box .alert-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.alert-box .alert-body{flex:1;}
+.alert-box .alert-title{font-size:13px;font-weight:800;margin-bottom:5px;}
+.alert-coral .alert-title{color:var(--coral);}
+.alert-emerald .alert-title{color:var(--emerald);}
+.alert-gold .alert-title{color:var(--gold);}
+.alert-box .alert-text{font-size:13px;color:var(--soft);line-height:1.6;}
+
+/* SECTION HEADINGS */
+.sec-h{font-size:22px;font-weight:800;color:var(--text);margin-bottom:6px;margin-top:40px;}
+.sec-h:first-child{margin-top:0;}
+.sec-desc{font-size:13px;color:var(--muted);margin-bottom:24px;}
+.divider{height:1px;background:var(--border);margin:36px 0;}
+
+/* CHECKLIST */
+.checklist{list-style:none;padding:0;}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);
+  font-size:13px;color:var(--soft);}
+.checklist li:last-child{border-bottom:none;}
+.checklist li::before{content:"✓";color:var(--gold);font-weight:800;font-size:13px;flex-shrink:0;margin-top:1px;}
+.checklist li strong{color:var(--text);}
+
+/* MINI-CAL */
+.mini-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:20px 0;}
+.cal-day{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 8px;
+  text-align:center;transition:background .2s,border-color .2s;}
+.cal-day.active-day{background:var(--card);border-color:var(--border-hi);}
+.cal-day .day-abbr{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.cal-day .day-emoji{font-size:18px;display:block;margin-bottom:4px;}
+.cal-day .day-name{font-size:10px;font-weight:700;color:var(--soft);}
+.cal-day .day-color{height:3px;border-radius:2px;margin-top:8px;}
+.cal-day.rest-day{opacity:.45;}
+
+/* DAY HEADER */
+.day-header{display:flex;align-items:center;gap:14px;padding:20px 24px;background:var(--surface);
+  border:1px solid var(--border);border-radius:14px;margin-bottom:20px;flex-wrap:wrap;}
+.day-header .day-icon{font-size:28px;flex-shrink:0;}
+.day-header .day-info{flex:1;min-width:0;}
+.day-header .day-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:3px;}
+.day-header .day-title{font-size:20px;font-weight:800;color:var(--text);line-height:1.2;}
+.day-header .day-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+
+/* SESSION BLOCK */
+.session-block{margin-bottom:48px;}
+.session-block+.session-block{padding-top:16px;border-top:1px solid var(--border);}
+
+/* EXERCISE GRID */
+.ex-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px;}
+.ex-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;
+  transition:background .2s,border-color .2s;}
+.ex-card:hover{background:var(--card-hover);border-color:var(--border-hi);}
+.ex-card.cycling-card{border-style:dashed;opacity:.85;}
+.ex-name{font-size:14px;font-weight:800;color:var(--text);margin-bottom:8px;line-height:1.3;}
+.ex-new{font-size:11px;margin-left:6px;}
+.ex-stats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.ex-stat{background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  padding:3px 9px;font-size:11px;font-weight:600;color:var(--soft);}
+.ex-stat.rir{color:var(--gold);border-color:var(--gold-dim);background:var(--gold-glow);}
+.ex-divider{height:1px;background:var(--border);margin:10px 0;}
+.ex-section{margin-bottom:6px;}
+.ex-section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--muted);margin-bottom:3px;}
+.ex-section-text{font-size:12px;color:var(--soft);line-height:1.5;}
+.ex-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+
+/* BLOCK LABEL */
+.block-label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);padding:10px 0 6px;margin-top:8px;border-top:1px solid var(--border);}
+.block-label:first-child{border-top:none;padding-top:0;}
+
+/* VOL BAR */
+.vol-table{width:100%;border-collapse:separate;border-spacing:0;}
+.vol-table tr{border-bottom:1px solid var(--border);}
+.vol-table td{padding:12px 8px;vertical-align:middle;}
+.vol-table td:first-child{font-size:13px;font-weight:700;color:var(--text);width:130px;padding-left:0;}
+.vol-table td:nth-child(2){width:52px;font-size:22px;font-weight:900;text-align:right;padding-right:16px;}
+.vol-table td:nth-child(3){min-width:140px;}
+.vol-table td:last-child{font-size:11px;color:var(--muted);padding-left:12px;width:180px;}
+.vol-bar-track{background:var(--dim);border-radius:6px;height:8px;overflow:hidden;}
+.vol-bar-fill{height:100%;border-radius:6px;width:0;animation:barFill 1s ease forwards;}
+
+/* GRID 2-COL */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+
+/* NUTRITION MACRO CARD */
+.macro-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;text-align:center;}
+.macro-card .macro-val{font-size:32px;font-weight:900;line-height:1;margin-bottom:6px;}
+.macro-card .macro-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.macro-card .macro-sub{font-size:12px;color:var(--soft);margin-top:6px;}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;}
+.data-table th{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding:10px 12px;border-bottom:2px solid var(--border);text-align:left;}
+.data-table td{font-size:13px;color:var(--soft);padding:12px 12px;border-bottom:1px solid var(--border);}
+.data-table td:first-child{color:var(--text);font-weight:600;}
+.data-table tr:last-child td{border-bottom:none;}
+
+/* FOOTER */
+.footer{background:var(--surface);border-top:1px solid var(--border);text-align:center;padding:40px 24px;}
+.footer-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);margin-bottom:8px;}
+.footer-sub{font-size:12px;color:var(--muted);letter-spacing:.05em;}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  .hero{padding:60px 16px 48px;}
+  .hero-glow{width:320px;height:260px;}
+  .tab-panel{padding:32px 16px 60px;}
+  .ex-grid{grid-template-columns:1fr;}
+  .grid-2{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr;}
+  .mini-cal{grid-template-columns:repeat(7,1fr);gap:4px;}
+  .cal-day{padding:8px 4px;}
+  .cal-day .day-emoji{font-size:14px;}
+  .cal-day .day-name{display:none;}
+  .vol-table td:last-child{display:none;}
+  .vol-table td:first-child{width:100px;}
+  .hero-title{font-size:38px;}
+}
+@media(max-width:700px){
+  .grid-2{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr 1fr;}
+}
+
+/* UTILITY */
+.mt-8{margin-top:8px;}.mt-16{margin-top:16px;}.mt-24{margin-top:24px;}.mt-32{margin-top:32px;}
+.mb-0{margin-bottom:0!important;}
+.text-gold{color:var(--gold)!important;}
+.text-steel{color:var(--steel)!important;}
+.text-violet{color:var(--violet)!important;}
+.text-emerald{color:var(--emerald)!important;}
+.text-coral{color:var(--coral)!important;}
+.text-orange{color:var(--orange)!important;}
+.text-soft{color:var(--soft);}
+.fw-800{font-weight:800;}
+.small{font-size:12px;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-label">Aesthetics Protocol · 4-Day Edition v3.1 · Daily Warmup Routines + Post-Lift Cooldown</div>
+  <h1 class="hero-title">The Aesthetics Protocol</h1>
+  <p class="hero-sub">Redesigned · Per-session warmup routines · Post-lift cardio cooldown · Shoulders-first Thursday · 2× side delts · Vertical pulling added</p>
+  <div class="hero-tags">
+    <span class="hero-tag">Push / Pull / Shoulders / Legs+Arms</span>
+    <span class="hero-tag">71.5 kg → Lean Bulk</span>
+    <span class="hero-tag">~95 Working Sets/Week</span>
+    <span class="hero-tag">12-Month Sustainability</span>
+  </div>
+</section>
+
+<!-- STICKY NAV -->
+<nav class="tab-nav" role="navigation" aria-label="Program sections">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" onclick="switchTab('split',this)">Split</button>
+    <button class="tab-btn" onclick="switchTab('program',this)">Program</button>
+    <button class="tab-btn" onclick="switchTab('nutrition',this)">Nutrition</button>
+    <button class="tab-btn" onclick="switchTab('cycling',this)">Cycling<span class="new-badge">NEW</span></button>
+    <button class="tab-btn" onclick="switchTab('volume',this)">Volume</button>
+    <button class="tab-btn" onclick="switchTab('recovery',this)">Recovery</button>
+  </div>
+</nav>
+
+<!-- PANELS -->
+<div id="panel-split" class="tab-panel active"></div>
+<div id="panel-program" class="tab-panel"></div>
+<div id="panel-nutrition" class="tab-panel"></div>
+<div id="panel-cycling" class="tab-panel"></div>
+<div id="panel-volume" class="tab-panel"></div>
+<div id="panel-recovery" class="tab-panel"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-title">Aesthetics Protocol · 4-Day Edition v3.1 · Daily Warmup Routines + Post-Lift Cooldown</div>
+  <div class="footer-sub">Surya Partap · Refined for Performance &amp; Aesthetics · Built for 12-Month Sustainability</div>
+</footer>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const sessions = [
+  {
+    day:"Monday", color:"gold", icon:"🏋️", label:"Push", duration:"75-85 min",
+    exercises:[
+      {name:"Incline DB Press",sets:"4",reps:"8-10",rir:"2-3",rest:"2.5 min",why:"Upper pec emphasis at longer muscle length; highest mechanical tension",cue:"45° incline, elbows at 45° to torso, full stretch at bottom",tags:["Chest","Compound","Priority"]},
+      {name:"Flat DB Press",sets:"4",reps:"8-10",rir:"2",rest:"2.5 min",why:"Mid-pec mass builder; follows incline while chest still fresh",cue:"Drive DBs together at top, slight wrist supination",tags:["Chest","Compound"]},
+      {name:"DB Incline Flye (deep stretch)",sets:"3",reps:"12-15",rir:"2",rest:"90 sec",why:"Maximises pec stretch under load — peak hypertrophic stimulus",cue:"Slight elbow bend, lower until chest stretches fully, no bounce",tags:["Chest","Isolation","Stretch"]},
+      {name:"DB Squeeze Press (adduction)",sets:"3",reps:"12-15",rir:"2",rest:"75 sec",why:"Adduction overload — targets sternal head and inner chest",cue:"Press DBs together hard throughout entire rep",tags:["Chest","Isolation","Adduction"]},
+      {name:"DB Lateral Raise (strict partial)",sets:"3",reps:"15-20",rir:"2",rest:"75 sec",why:"Side delt 1st frequency hit on Monday — distributes 10 sets across 2 sessions",cue:"Lean slightly forward, raise to 90°, no trap shrug, partial ROM on fatigue",tags:["Side Delts","Isolation","🆕 NEW"],isNew:true,highlight:"SIDE DELT #1"},
+      {name:"Close-Grip DB Floor Press",sets:"3",reps:"10-12",rir:"2",rest:"90 sec",why:"Tricep long + medial head; floor limits ROM, reduces shoulder stress",cue:"DBs touching, elbows graze floor, squeeze triceps at lockout",tags:["Triceps","Compound"]},
+      {name:"Overhead DB Tricep Extension",sets:"3",reps:"12-15",rir:"2",rest:"75 sec",why:"Long head stretch position — most growth-prone tricep head",cue:"Elbows forward, lower behind head, full extension up top",tags:["Triceps","Isolation","Stretch"]},
+      {name:"🚴 Indoor Cycling Zone 2",sets:"1",reps:"10 min",rir:"RPE 3-4",rest:"—",why:"Cooldown + active recovery. Lowers heart rate gradually, flushes metabolites, promotes blood flow to trained muscles, and adds NEAT-equivalent calories without compromising lifting performance. Post-lift placement eliminates any risk of pre-fatigue affecting working sets.",cue:"Conversational pace, RPE 3-4/10. Goal is recovery, not training.",tags:["Cooldown","Zone 2"],cycling:true}
+    ]
+  },
+  {
+    day:"Tuesday", color:"steel", icon:"💪", label:"Pull", duration:"75-85 min",
+    exercises:[
+      {name:"Neutral-Grip DB Pull-Up",sets:"3",reps:"6-10",rir:"2",rest:"2 min",why:"Vertical pull added in v3 — brachialis + lat stretch lengthened position",cue:"Full hang at bottom, chin over level, neutral grip reduces elbow stress",tags:["Back","Vertical Pull","🆕 NEW"],isNew:true,highlight:"VERTICAL PULL"},
+      {name:"DB Chest-Supported Row",sets:"4",reps:"8-10",rir:"2-3",rest:"2.5 min",why:"Chest support eliminates lower back drive — pure horizontal pull",cue:"Pull to lower chest, hold 1 sec, full stretch at bottom",tags:["Back","Compound","Priority"]},
+      {name:"Single-Arm DB Row",sets:"3",reps:"10-12/side",rir:"2",rest:"90 sec",why:"Unilateral — corrects asymmetry; reduced to 3 sets from 4 with pull-up added",cue:"Brace core, pull elbow back and up, no hip rotation",tags:["Back","Compound"]},
+      {name:"DB Pullover (lat stretch)",sets:"3",reps:"12-15",rir:"2",rest:"90 sec",why:"Long lat stretch with shoulder flexion — serratus + lat hypertrophy",cue:"Keep slight elbow bend, lower until lats fully stretched overhead",tags:["Back","Lats","Stretch"]},
+      {name:"Face Pull",sets:"3",reps:"15-20",rir:"2",rest:"75 sec",why:"Rear delt + external rotator — shoulder health + posterior volume",cue:"Pull to forehead, elbows high, thumbs point back at top",tags:["Rear Delts","Rotator Cuff","Health"]},
+      {name:"DB Reverse Curl",sets:"3",reps:"12-15",rir:"2",rest:"75 sec",why:"Brachialis + brachioradialis overload — improves arm thickness & grip",cue:"Pronated grip, curl straight up, no wrist break",tags:["Biceps","Brachialis","Forearms"]},
+      {name:"Incline DB Curl (long head stretch)",sets:"3",reps:"10-12",rir:"2",rest:"75 sec",why:"Incline stretches long head of biceps — highest EMG stretch stimulus",cue:"Let arms hang fully back at bottom, curl to shoulder, no swinging",tags:["Biceps","Long Head","Stretch"]},
+      {name:"🚴 Indoor Cycling Zone 2",sets:"1",reps:"10 min",rir:"RPE 3-4",rest:"—",why:"Cooldown + active recovery. Lowers heart rate gradually, flushes metabolites, promotes blood flow to trained muscles, and adds NEAT-equivalent calories without compromising lifting performance. Post-lift placement eliminates any risk of pre-fatigue affecting working sets.",cue:"Conversational pace, RPE 3-4/10. Goal is recovery, not training.",tags:["Cooldown","Zone 2"],cycling:true}
+    ]
+  },
+  {
+    day:"Thursday", color:"violet", icon:"🔺", label:"Shoulders", duration:"85-95 min",
+    exercises:[
+      {name:"Seated DB Shoulder Press",sets:"4",reps:"8-10",rir:"2-3",rest:"2.5 min",why:"Primary overhead press — anterior + lateral delt compound stimulus",cue:"Neutral spine, press to 3/4 lockout, control descent to ear level",tags:["Shoulders","Compound","Priority"],block:"SHOULDER BLOCK"},
+      {name:"Arnold Press",sets:"3",reps:"10-12",rir:"2",rest:"2 min",why:"Rotation recruits anterior delt through full ROM — more complete shoulder stimulus",cue:"Start palms facing you, rotate out as you press, full supination at top",tags:["Shoulders","Compound","Full ROM"]},
+      {name:"Face Pull",sets:"3",reps:"15-20",rir:"2",rest:"75 sec",why:"Rear delt + rotator cuff prep before heavy lateral work — shoulder health priority",cue:"Pull to forehead, elbows high, thumbs point back at top",tags:["Rear Delts","Health","Pre-Lateral"]},
+      {name:"DB Lateral Raise (strict partial)",sets:"7",reps:"15-20",rir:"2",rest:"75 sec",why:"Primary side delt stimulus — 7 sets = 70% of weekly side delt volume on Thursday",cue:"Lean slightly forward, raise to 90°, no trap shrug, partial ROM on fatigue",tags:["Side Delts","Isolation","🆕 PRIMARY"],highlight:"SIDE DELT #2 — PRIMARY"},
+      {name:"Bent-Over DB Rear Delt Raise",sets:"3",reps:"15-20",rir:"2",rest:"75 sec",why:"Rear delt isolation — 2×/week frequency via Thu + Tue face pulls",cue:"Hinge 45°, arms arc out to sides, slight elbow bend, lead with elbows",tags:["Rear Delts","Isolation"]},
+      {name:"DB Walking Lunge",sets:"3",reps:"10-12/leg",rir:"2-3",rest:"90 sec",why:"Leg frequency block — quad + glute mid-week stimulus between Sat sessions",cue:"Long stride, front shin vertical, back knee 1 inch from floor",tags:["Quads","Glutes","Unilateral"],block:"LEG FREQUENCY BLOCK"},
+      {name:"Heels-Elevated Goblet Squat",sets:"2",reps:"12-15",rir:"2",rest:"75 sec",why:"Quad volume addition in v3 — heel elevation maximises quad ROM and VMO activation",cue:"Heels on plates, squat to full depth, elbows push knees out at bottom",tags:["Quads","Isolation","🆕 NEW"],isNew:true,highlight:"QUAD VOLUME ADD"},
+      {name:"DB Romanian Deadlift (lighter)",sets:"2",reps:"12-15",rir:"2-3",rest:"90 sec",why:"Hamstring mid-week frequency — lighter than Saturday, focus on stretch",cue:"Hinge deep, feel full hamstring stretch, drive hips forward not up",tags:["Hamstrings","Hinge"]},
+      {name:"Seated Calf Raise (soleus)",sets:"3",reps:"15-20",rir:"1-2",rest:"60 sec",why:"Knee-bent position isolates soleus — complements standing gastroc work Saturday",cue:"Full plantarflexion, 2 sec pause at top, full stretch at bottom",tags:["Calves","Soleus"]},
+      {name:"Hollow Body Hold",sets:"3",reps:"30-45 sec",rir:"1",rest:"60 sec",why:"Anterior core anti-extension — protects spine during heavy pressing and squatting",cue:"Lower back glued to floor, arms overhead, legs low, breathe shallow",tags:["Core","Anti-Extension"],block:"CORE FINISHER"},
+      {name:"Pallof Press",sets:"3",reps:"12/side",rir:"2",rest:"60 sec",why:"Anti-rotation core stability — transfers to all unilateral lower body movements",cue:"Press out and hold briefly, resist rotation, return controlled",tags:["Core","Anti-Rotation"]},
+      {name:"🚴 Indoor Cycling Zone 2",sets:"1",reps:"10 min",rir:"RPE 3-4",rest:"—",why:"Cooldown + active recovery. Lowers heart rate gradually, flushes metabolites, promotes blood flow to trained muscles, and adds NEAT-equivalent calories without compromising lifting performance. Post-lift placement eliminates any risk of pre-fatigue affecting working sets.",cue:"Conversational pace, RPE 3-4/10. Goal is recovery, not training.",tags:["Cooldown","Zone 2"],cycling:true}
+    ]
+  },
+  {
+    day:"Saturday", color:"emerald", icon:"🦵", label:"Legs+Arms", duration:"90-100 min",
+    exercises:[
+      {name:"Bulgarian Split Squat (DB)",sets:"4",reps:"8-10/leg",rir:"2-3",rest:"2.5 min",why:"Highest quad + glute stimulus in program — unilateral corrects asymmetry",cue:"Front foot far enough forward, shin stays vertical, torso upright",tags:["Quads","Glutes","Unilateral","Priority"],block:"LEG SESSION"},
+      {name:"Goblet Squat (DB)",sets:"3",reps:"12-15",rir:"2",rest:"90 sec",why:"Bilateral quad volume, easier on lower back, great for depth",cue:"Elbows inside knees at bottom, chest tall, full depth",tags:["Quads","Compound"]},
+      {name:"DB Hip Thrust / Glute Bridge",sets:"4",reps:"12-15",rir:"2",rest:"90 sec",why:"Primary glute driver — hip extension at full hip flexion = peak stretch",cue:"Shoulders on bench, drive through heels, squeeze at top, neutral spine",tags:["Glutes","Compound","Priority"]},
+      {name:"DB Romanian Deadlift (heavy)",sets:"4",reps:"8-10",rir:"2-3",rest:"2.5 min",why:"Heavy hamstring + glute compound — highest load of the week for posterior chain",cue:"Hinge deep, feel full hamstring stretch, drive hips forward not up",tags:["Hamstrings","Glutes","Hinge","Priority"]},
+      {name:"Single-Leg DB RDL",sets:"3",reps:"10-12/leg",rir:"2",rest:"90 sec",why:"Unilateral hamstring — addresses imbalances, higher tension per leg",cue:"Slight knee bend, hinge until parallel, arms hang straight",tags:["Hamstrings","Unilateral"]},
+      {name:"Standing DB Calf Raise (gastroc)",sets:"4",reps:"15-20",rir:"1-2",rest:"60 sec",why:"Straight knee isolates gastrocnemius — primary calf mass builder",cue:"Full stretch at bottom, 1 sec pause, full plantarflexion at top",tags:["Calves","Gastrocnemius"]},
+      {name:"DB Hammer Curl",sets:"3",reps:"10-12",rir:"2",rest:"75 sec",why:"Brachialis + brachioradialis — neutral grip builds arm thickness",cue:"Neutral grip, curl straight up, no shoulder swing",tags:["Biceps","Brachialis"],block:"ARM SESSION"},
+      {name:"DB Concentration Curl",sets:"3",reps:"12-15",rir:"2",rest:"75 sec",why:"Peak bicep contraction — elbow braced for no cheating",cue:"Elbow on inner thigh, full ROM, supinate at top",tags:["Biceps","Peak","Isolation"]},
+      {name:"Overhead DB Tricep Extension",sets:"3",reps:"12-15",rir:"2",rest:"75 sec",why:"Long head stretch position — mirrors Monday for 2× weekly frequency",cue:"Elbows forward, control descent behind head",tags:["Triceps","Long Head"]},
+      {name:"Diamond Push-Up",sets:"2",reps:"12-15",rir:"2",rest:"60 sec",why:"Bodyweight tricep finisher — reduced to 2 sets with kickback added",cue:"Hands form diamond shape, elbows track back not flared",tags:["Triceps","Bodyweight"]},
+      {name:"DB Kickback",sets:"3",reps:"12-15",rir:"2",rest:"60 sec",why:"Tricep lateral head isolation — added in v3 to target under-developed head",cue:"Hinge forward, upper arm parallel to floor, extend fully, hold 1 sec",tags:["Triceps","Lateral Head","🆕 NEW"],isNew:true,highlight:"TRICEP LATERAL HEAD"},
+      {name:"DB Farmer Carry",sets:"3",reps:"30-45 sec",rir:"—",rest:"90 sec",why:"Grip + trap + core integration — systemic strength benefit",cue:"Heaviest DBs possible, tall posture, no sway, steady gait",tags:["Grip","Traps","Core","🆕 NEW"],isNew:true,highlight:"GRIP + TRAPS + CORE",block:"GRIP FINISHER"}
+    ]
+  }
+];
+
+// ─── HELPERS ────────────────────────────────────────────────────────────────
+const rendered={};
+function pill(label,color){return`<span class="pill pill-${color}">${label}</span>`;}
+function sectionBadge(label,color){return`<div class="section-badge sb-${color}">${label}</div>`;}
+
+// ─── SPLIT ──────────────────────────────────────────────────────────────────
+function renderSplit(){
+  const el=document.getElementById('panel-split');
+  const v3items=[
+    "10-min Zone 2 cycling <strong>cooldown</strong> on Mon/Tue/Thu (post-lift)",
+    "Thursday restructured — shoulders <strong>FIRST</strong>, legs after",
+    "Side delts split 2×/week (7 Thu + 3 Mon)",
+    "Vertical pull added (DB Pull-Up Tuesday)",
+    "Quad volume → 12 sets (Heels-Elevated Goblet added Thursday)",
+    "Hip Thrust progression brought forward (Week 4-6 unilateral)",
+    "DB Kickback added Saturday (tricep lateral head)",
+    "DB Farmer Carry added Saturday (grip + traps)",
+    "Weekly AMRAP RIR check (was every 2-3 weeks)",
+    "Dedicated 5-7 min warmup routine for each training day"
+  ];
+  const days=[
+    {abbr:"MON",name:"Push",emoji:"🏋️",color:"--gold",active:true},
+    {abbr:"TUE",name:"Pull",emoji:"💪",color:"--steel",active:true},
+    {abbr:"WED",name:"Rest",emoji:"😴",color:null,active:false},
+    {abbr:"THU",name:"Shoulders",emoji:"🔺",color:"--violet",active:true},
+    {abbr:"FRI",name:"Rest",emoji:"😴",color:null,active:false},
+    {abbr:"SAT",name:"Legs+Arms",emoji:"🦵",color:"--emerald",active:true},
+    {abbr:"SUN",name:"Rest",emoji:"😴",color:null,active:false},
+  ];
+  const calHTML=days.map(d=>`
+    <div class="cal-day ${d.active?'active-day':'rest-day'}">
+      <div class="day-abbr">${d.abbr}</div>
+      <div class="day-emoji">${d.emoji}</div>
+      <div class="day-name">${d.name}</div>
+      ${d.color?`<div class="day-color" style="background:var(${d.color})"></div>`:'<div class="day-color" style="background:var(--dim)"></div>'}
+    </div>`).join('');
+  const science=[
+    {t:"2× Weekly Frequency",d:"Schoenfeld 2016 meta-analysis: 2×/week produces ~40% more growth than 1×/week at equal volume"},
+    {t:"Dedicated Sessions",d:"Avoids muscle competition — chest-tricep-shoulder on one day reduces overlap fatigue"},
+    {t:"3 Full Rest Days",d:"Connective tissue adapts slower than muscle — Wed/Fri/Sun prevent overuse injury"},
+    {t:"48-Hour Shoulder Rest",d:"Tue Pull → Thu Shoulders provides minimum 48h recovery for rear delts and rotator cuff"},
+    {t:"12-Month Adherence",d:"Ralston 2021: simplified split structures show higher 12-month adherence vs complex programming"},
+  ];
+  const constraints=[
+    "Dumbbell-first — all exercises performable with DB set only",
+    "No barbell required — home gym / commercial gym compatible",
+    "No machine dependency (machines listed as optional swaps only)",
+    "4 days maximum — sustainable with full-time work schedule",
+    "Sessions under 100 minutes — no junk volume beyond MEV+",
+    "Each muscle group hits at least 2× weekly via direct or indirect work"
+  ];
+  el.innerHTML=`
+    ${sectionBadge('Version 3 Updates','gold')}
+    <div class="card accent-gold">
+      <div class="card-title">🆕 What's New in v3</div>
+      <ul class="checklist">
+        ${v3items.map((i,n)=>`<li><strong>${n+1}.</strong> ${i}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('Weekly Schedule','steel')}
+    <h2 class="sec-h">Weekly Training Calendar</h2>
+    <p class="sec-desc">4 training days · 3 full rest days · Optimised muscle frequency</p>
+    <div class="mini-cal">${calHTML}</div>
+    <div class="divider"></div>
+    ${sectionBadge('Science','emerald')}
+    <h2 class="sec-h">Scientific Rationale</h2>
+    <p class="sec-desc">Evidence-based design decisions behind this split structure</p>
+    <div class="grid-2">
+      ${science.map(s=>`<div class="card accent-emerald"><div class="card-title text-emerald">${s.t}</div><div class="card-sub">${s.d}</div></div>`).join('')}
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('Constraints','violet')}
+    <h2 class="sec-h">Program Constraints</h2>
+    <p class="sec-desc">Design rules this program was built around</p>
+    <div class="card accent-violet">
+      <ul class="checklist">
+        ${constraints.map(c=>`<li>${c}</li>`).join('')}
+      </ul>
+    </div>`;
+}
+
+// ─── PROGRAM ─────────────────────────────────────────────────────────────────
+function renderProgram(){
+  const el=document.getElementById('panel-program');
+  const colorMap={gold:'--gold',steel:'--steel',violet:'--violet',emerald:'--emerald'};
+  const pillMap={gold:'gold',steel:'steel',violet:'violet',emerald:'emerald'};
+  const warmups={
+    "Monday":{
+      title:"Upper Body Push Prep",duration:"6 MIN",
+      steps:[
+        {ex:"Jumping jacks",detail:"45 sec",note:"Raises core temp + heart rate"},
+        {ex:"Arm circles",detail:"10 forward + 10 backward",note:"Warms shoulder capsule"},
+        {ex:"Wall slides",detail:"10 reps",note:"Scapular mobility for pressing"},
+        {ex:"Scapular push-ups",detail:"10 reps",note:"Serratus anterior activation"},
+        {ex:"Band pull-aparts",detail:"15 reps",note:"Rear delt + rotator cuff prep"},
+        {ex:"Cat-cow",detail:"8 reps",note:"Thoracic spine mobility"},
+        {ex:"Empty DB press warmup",detail:"1 set × 12 reps (light DBs, 5-10 lbs)",note:"Movement pattern grooving for incline press"}
+      ]
+    },
+    "Tuesday":{
+      title:"Upper Body Pull Prep",duration:"6 MIN",
+      steps:[
+        {ex:"Jumping jacks",detail:"45 sec",note:"Raises core temp + heart rate"},
+        {ex:"Arm circles",detail:"10 forward + 10 backward",note:"Warms shoulder capsule"},
+        {ex:"Cat-cow",detail:"10 reps",note:"Thoracic extension for rowing"},
+        {ex:"Scapular pulls / dead hang",detail:"5 reps + 20 sec hang",note:"Preps lats for pull-ups"},
+        {ex:"Band pull-aparts",detail:"15 reps",note:"Rear delt + rotator cuff prep"},
+        {ex:"Band face pulls",detail:"15 reps",note:"Rotator cuff + rear delt prep"},
+        {ex:"Empty DB row warmup",detail:"1 set × 12 reps (light DBs)",note:"Movement pattern grooving"}
+      ]
+    },
+    "Thursday":{
+      title:"Shoulder + Joint Health Focus",duration:"7 MIN",
+      steps:[
+        {ex:"Jumping jacks",detail:"45 sec",note:"Raises core temp + heart rate"},
+        {ex:"Arm circles",detail:"10 forward + 10 backward",note:"Warms shoulder capsule"},
+        {ex:"Wall slides",detail:"12 reps",note:"Scapular mobility for pressing"},
+        {ex:"Band pull-aparts",detail:"20 reps",note:"Rear delt + rotator cuff prep"},
+        {ex:"Band external rotations",detail:"12 reps per side",note:"Critical for shoulder day — rotator cuff protection"},
+        {ex:"Scapular push-ups",detail:"10 reps",note:"Serratus anterior activation"},
+        {ex:"Wrist flexor + extensor stretches",detail:"30 sec each side",note:"Elbow tendon protection"},
+        {ex:"Empty DB press warmup",detail:"1 set × 12 reps (light DBs)",note:"Movement pattern grooving"},
+        {ex:"Empty lateral raise",detail:"1 set × 15 reps (very light DBs, 5 lbs)",note:"Grooves the partial ROM pattern"}
+      ]
+    },
+    "Saturday":{
+      title:"Lower Body + Hip/Knee Prep",duration:"7 MIN",
+      steps:[
+        {ex:"Jumping jacks",detail:"45 sec",note:"Full body activation"},
+        {ex:"Leg swings forward/back",detail:"10 per leg",note:"Hip flexor + hamstring mobility"},
+        {ex:"Leg swings side-to-side",detail:"10 per leg",note:"Hip abductor mobility"},
+        {ex:"Bodyweight squats",detail:"12 reps",note:"Knee + ankle range of motion"},
+        {ex:"Walking lunges",detail:"8 per leg",note:"Hip flexor stretch + glute activation"},
+        {ex:"Glute bridges",detail:"12 reps",note:"Glute activation before hip thrust"},
+        {ex:"World's greatest stretch",detail:"4 per side",note:"Full posterior chain mobility"},
+        {ex:"Empty BSS warmup",detail:"1 set × 8 per leg (bodyweight only)",note:"Grooves the split squat pattern"}
+      ]
+    }
+  };
+  const tagColorMap={
+    'Warmup':'gold','Zone 2':'gold','Cooldown':'emerald','Chest':'steel','Compound':'steel','Priority':'coral',
+    'Isolation':'violet','Stretch':'emerald','Adduction':'violet','Side Delts':'violet',
+    '🆕 NEW':'gold','Back':'steel','Vertical Pull':'steel','Rear Delts':'emerald',
+    'Health':'emerald','Biceps':'gold','Brachialis':'gold','Grip':'orange','Lats':'steel',
+    'Rotator Cuff':'emerald','Long Head':'gold','Shoulders':'violet','All Heads':'violet',
+    'Quads':'violet','Glutes':'emerald','Unilateral':'steel','Hamstrings':'emerald',
+    'Hinge':'emerald','Calves':'soft','Core':'coral','Anti-Extension':'coral',
+    'Anti-Rotation':'coral','Triceps':'gold','Bodyweight':'steel','Lateral Head':'gold',
+    'Traps':'orange','Peak':'gold','Gastrocnemius':'emerald','Soleus':'emerald'
+  };
+  function tagPill(t){const c=tagColorMap[t]||'steel';return pill(t,c);}
+  let html='';
+  sessions.forEach(s=>{
+    const color=colorMap[s.color]||'--gold';
+    const pc=pillMap[s.color]||'gold';
+    html+=`<div class="session-block">
+      <div class="day-header" style="border-left:4px solid var(${color})">
+        <span class="day-icon">${s.icon}</span>
+        <div class="day-info">
+          <div class="day-label">${s.day}</div>
+          <div class="day-title">${s.label}</div>
+          <div class="day-meta">
+            ${pill(s.duration,pc)}
+            ${s.restructured?pill('Restructured v3','gold'):''}
+            ${s.noCycling?pill('No Cycling','coral'):''}
+          </div>
+        </div>
+      </div>`;
+    // Inject daily warmup card
+    const wu=warmups[s.day];
+    if(wu){
+      html+=`<div class="card accent-coral" style="margin-bottom:14px">
+        <div class="card-label" style="color:var(--coral);display:flex;align-items:center;gap:8px;margin-bottom:10px;font-weight:700;font-size:13px">
+          🔥 DAILY WARMUP — ${wu.title}
+          <span class="pill" style="background:var(--coral-dim);color:var(--coral);border:1px solid var(--coral);font-size:9px">${wu.duration}</span>
+        </div>
+        <ol style="color:var(--soft);font-size:12px;line-height:1.8;padding-left:18px;margin:0">
+          ${wu.steps.map(st=>`<li><strong style="color:var(--text)">${st.ex}</strong> — ${st.detail}<span style="color:var(--muted);font-size:11px;display:block;margin-top:2px">(${st.note})</span></li>`).join('')}
+        </ol>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);color:var(--muted);font-size:11px;font-style:italic">
+          Total time: ~${wu.duration.toLowerCase()}. Move briskly — keep rest under 15 sec between warmup steps. Stop if you feel any sharp pain.
+        </div>
+      </div>`;
+    }
+    let currentBlock='';
+    s.exercises.forEach((ex,i)=>{
+      if(ex.block && ex.block!==currentBlock){
+        currentBlock=ex.block;
+        html+=`<div class="block-label" style="color:var(${color})">${ex.block}</div>`;
+      }
+      html+=`<div class="ex-grid" style="margin-bottom:8px">
+        <div class="ex-card ${ex.cycling?'cycling-card':''}" style="border-top:2px solid var(${color})">
+          <div class="ex-name">${ex.name}${ex.isNew?'<span class="ex-new">🆕</span>':''}</div>
+          <div class="ex-stats">
+            <span class="ex-stat">${ex.sets} sets</span>
+            <span class="ex-stat">${ex.reps} reps</span>
+            <span class="ex-stat rir">RIR ${ex.rir}</span>
+            <span class="ex-stat">Rest ${ex.rest}</span>
+          </div>
+          ${ex.highlight?`<div style="margin-bottom:8px">${pill(ex.highlight,pc)}</div>`:''}
+          <div class="ex-tags">${ex.tags.map(t=>tagPill(t)).join('')}</div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-section">
+            <div class="ex-section-label">Why</div>
+            <div class="ex-section-text">${ex.why}</div>
+          </div>
+          <div class="ex-divider"></div>
+          <div class="ex-section">
+            <div class="ex-section-label">Cue</div>
+            <div class="ex-section-text">${ex.cue}</div>
+          </div>
+        </div>
+      </div>`;
+    });
+    html+='</div>';
+  });
+  // Progression rules
+  html+=`<div class="divider"></div>
+    ${sectionBadge('Progression','gold')}
+    <div class="card accent-gold">
+      <div class="card-title">📈 Progression Rules</div>
+      <ul class="checklist">
+        <li><strong>Top of rep range × all sets at RIR 2</strong> → add smallest increment, restart at bottom of range</li>
+        <li><strong>Can't hit bottom of range at RIR 2</strong> → hold weight until you can</li>
+        <li><strong>Stuck 2+ sessions</strong> → deload: drop 5-10%, rebuild</li>
+        <li><span class="text-gold">🆕</span> <strong>Weekly AMRAP set</strong> on one isolation exercise to track true progress (was every 2-3 weeks)</li>
+      </ul>
+    </div>
+    ${sectionBadge('Exercise Swaps','violet')}
+    <div class="card accent-violet">
+      <div class="card-title">🔄 Exercise Swap Schedule</div>
+      <table class="data-table">
+        <thead><tr><th>Weeks</th><th>Exercise Change</th></tr></thead>
+        <tbody>
+          <tr><td>Week 4-6</td><td><span class="text-gold">🆕</span> DB Hip Thrust → Single-Leg DB Hip Thrust (3 sets/leg)</td></tr>
+          <tr><td>Week 8-10</td><td><span class="text-gold">🆕</span> Hip Thrust + 3-sec top pause + slow eccentric</td></tr>
+          <tr><td>Week 12+</td><td><span class="text-gold">🆕</span> B-Stance Hip Thrust</td></tr>
+          <tr><td>Month 3-4</td><td>DB Incline Flye → Cable Crossover / Incline Pullover</td></tr>
+          <tr><td>Month 3-4</td><td>Diamond Push-Up → Close-Grip Floor Press as primary</td></tr>
+          <tr><td>Month 4-5</td><td>Goblet Squat → 1.5-rep Goblet Squat</td></tr>
+          <tr><td>Month 5-6</td><td>Bulgarian Split Squat → 1.5-rep BSS</td></tr>
+        </tbody>
+      </table>
+    </div>`;
+  el.innerHTML=html;
+}
+
+// ─── NUTRITION ───────────────────────────────────────────────────────────────
+function renderNutrition(){
+  const el=document.getElementById('panel-nutrition');
+  const macros=[
+    {val:"~2,950",label:"Calories",sub:"2,900-3,000 kcal target",color:"gold"},
+    {val:"160g",label:"Protein",sub:"~2.2g/kg bodyweight",color:"steel"},
+    {val:"375g",label:"Carbs",sub:"350-400g range",color:"violet"},
+    {val:"77g",label:"Fats",sub:"70-85g range",color:"emerald"},
+  ];
+  const adjust=[
+    {scenario:"Gaining < 0.20 kg/wk",action:"Add 150-200 kcal via carbs"},
+    {scenario:"Gaining 0.20-0.28 kg/wk",action:"Hold — optimal lean bulk rate"},
+    {scenario:"Gaining > 0.35 kg/wk",action:"Cut 150-200 kcal to slow fat gain"},
+    {scenario:"Weight stalled 2+ weeks",action:"Add 200 kcal, re-assess in 10 days"},
+  ];
+  el.innerHTML=`
+    ${sectionBadge('Macros','gold')}
+    <h2 class="sec-h">Daily Macro Targets</h2>
+    <p class="sec-desc">Lean bulk protocol · 71.5 kg baseline · Target 0.20-0.28 kg/week gain</p>
+    <div class="grid-2" style="margin-bottom:24px">
+      ${macros.map(m=>`<div class="macro-card" style="border-top:3px solid var(--${m.color})">
+        <div class="macro-val text-${m.color}">${m.val}</div>
+        <div class="macro-label">${m.label}</div>
+        <div class="macro-sub">${m.sub}</div>
+      </div>`).join('')}
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('Caloric Adjustment','steel')}
+    <h2 class="sec-h">Adjustment Protocol</h2>
+    <p class="sec-desc">Weekly weigh-in (same time, same conditions) drives calorie decisions</p>
+    <div class="card accent-steel">
+      <table class="data-table">
+        <thead><tr><th>Weekly Weight Change</th><th>Action</th></tr></thead>
+        <tbody>
+          ${adjust.map(a=>`<tr><td>${a.scenario}</td><td>${a.action}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('Meal Timing','violet')}
+    <div class="card accent-violet">
+      <div class="card-title">⏱ Meal Timing Protocol</div>
+      <ul class="checklist">
+        <li><strong>Pre-training (60-90 min before):</strong> 40-60g carbs + 25-30g protein</li>
+        <li><strong>Post-training (within 60 min):</strong> 40-60g carbs + 35-40g protein</li>
+        <li><strong>Protein distribution:</strong> 4-5 meals per day, 35-45g each meal</li>
+        <li><strong>Carb timing:</strong> Front-load carbs around training, reduce in evening if not training next morning</li>
+      </ul>
+    </div>`;
+}
+
+// ─── CYCLING ─────────────────────────────────────────────────────────────────
+function renderCycling(){
+  const el=document.getElementById('panel-cycling');
+  const facts=[
+    {label:"When",val:"Mon / Tue / Thu",sub:"Post-lift cooldown · 30 min/week total",color:"gold"},
+    {label:"Intensity",val:"Zone 2",sub:"60-70% max HR · RPE 3-4/10",color:"steel"},
+    {label:"Duration",val:"10 min only",sub:"Per session",color:"violet"},
+    {label:"Forbidden",val:"Saturday",sub:"Leg day — interference risk",color:"coral"},
+  ];
+  const why=[
+    {t:"Active Recovery",d:"Gradual heart rate reduction prevents blood pooling in the legs. Keeps the cardiovascular system active during cool-down, reducing post-exercise dizziness and promoting venous return."},
+    {t:"Metabolite Flush",d:"Low-intensity pedalling accelerates clearance of lactate and inflammatory byproducts from trained muscles. Faster recovery between sessions compared to passive rest."},
+    {t:"Blood Flow to Trained Muscles",d:"Promotes circulation to the muscles just worked during the anabolic window — supporting nutrient delivery and growth factor signalling in the post-lift period."},
+    {t:"Zero Pre-Fatigue Risk",d:"Post-lift placement means lifting performance is fully protected. No risk of arriving at your first working set with elevated heart rate or depleted glycogen from cardio."},
+    {t:"NEAT Bonus",d:"~300-450 kcal/week additional caloric expenditure (unchanged from v3). Adds caloric headroom for the lean bulk without any meaningful recovery cost."},
+  ];
+  el.innerHTML=`
+    ${sectionBadge('Zone 2 Protocol','gold')}
+    <h2 class="sec-h">The 10-Minute Rule — Zone 2 Cooldown Protocol</h2>
+    <p class="sec-desc">Strategic post-lift cooldown — active recovery, metabolite flush, zero pre-fatigue risk</p>
+    <div class="grid-2" style="margin-bottom:24px">
+      ${facts.map(f=>`<div class="card accent-${f.color}">
+        <div class="section-badge sb-${f.color}" style="margin-bottom:8px">${f.label}</div>
+        <div style="font-size:22px;font-weight:900;color:var(--${f.color});margin-bottom:4px">${f.val}</div>
+        <div class="small text-soft">${f.sub}</div>
+      </div>`).join('')}
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('Why It Works (Post-Lift)','emerald')}
+    <h2 class="sec-h">Scientific Justification</h2>
+    <div class="grid-2">
+      ${why.map(w=>`<div class="card accent-emerald"><div class="card-title text-emerald">${w.t}</div><div class="card-sub">${w.d}</div></div>`).join('')}
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('Tracking','violet')}
+    <div class="card accent-violet">
+      <div class="card-title">📊 Session Logging</div>
+      <div class="card-sub" style="margin-bottom:14px">Log every cycling warmup to track consistency and ensure you stay in Zone 2.</div>
+      <table class="data-table">
+        <thead><tr><th>Field</th><th>What to Log</th><th>Target</th></tr></thead>
+        <tbody>
+          <tr><td>Duration</td><td>Total minutes on bike</td><td>10 min exactly</td></tr>
+          <tr><td>RPE</td><td>Rating of Perceived Exertion (1-10)</td><td>3-4 / 10</td></tr>
+          <tr><td>Watts (optional)</td><td>Average output watts if available</td><td>Consistent week-to-week</td></tr>
+          <tr><td>Heart Rate (optional)</td><td>Average HR if wearable available</td><td>60-70% max HR</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="divider"></div>
+    <div class="alert-box alert-coral">
+      <div class="alert-icon">🚨</div>
+      <div class="alert-body">
+        <div class="alert-title">Red Flag — RPE Creep</div>
+        <div class="alert-text">If your RPE exceeds <strong>5/10</strong>, you are going too hard. Back off immediately. The goal is warmup, not training. Going too hard defeats the cooldown purpose. You should feel recovered, not more fatigued, when you step off the bike.</div>
+      </div>
+    </div>`;
+}
+
+// ─── VOLUME ───────────────────────────────────────────────────────────────────
+function renderVolume(){
+  const el=document.getElementById('panel-volume');
+  const vols=[
+    {muscle:"Chest",sets:16,max:20,freq:"2×/wk",note:"Maintained from v2",color:"gold"},
+    {muscle:"Back",sets:17,max:20,freq:"2×/wk + vertical pull",note:"+ Pull-Up added",color:"steel"},
+    {muscle:"Side Delts",sets:10,max:15,freq:"2×/wk — 7 Thu + 3 Mon",note:"Was 1×/wk in v2",color:"violet"},
+    {muscle:"Rear Delts",sets:9,max:15,freq:"2×/wk",note:"Face Pull Mon+Thu",color:"emerald"},
+    {muscle:"Biceps",sets:12,max:18,freq:"2×/wk",note:"Maintained",color:"gold"},
+    {muscle:"Triceps",sets:12,max:18,freq:"2×/wk + lateral head",note:"+ Kickback added",color:"steel"},
+    {muscle:"Quads",sets:12,max:18,freq:"2×/wk",note:"Up from 10 sets",color:"violet"},
+    {muscle:"Hamstrings",sets:11,max:18,freq:"2×/wk",note:"Maintained",color:"emerald"},
+    {muscle:"Glutes",sets:7,max:16,freq:"2×/wk",note:"Via Hip Thrust + BSS",color:"orange"},
+    {muscle:"Calves",sets:7,max:16,freq:"2×/wk",note:"Gastroc + Soleus",color:"gold"},
+    {muscle:"Core",sets:6,max:12,freq:"1×/wk",note:"Thursday finisher",color:"steel"},
+    {muscle:"Grip / Forearms",sets:3,max:8,freq:"1×/wk",note:"🆕 New direct work",color:"orange"},
+  ];
+  const compare=[
+    {muscle:"Chest",v2:16,v3:16,note:"Maintained"},
+    {muscle:"Back",v2:17,v3:17,note:"+ Vertical pull added"},
+    {muscle:"Side Delts",v2:10,v3:10,note:"+ 2×/week frequency (was 1×)"},
+    {muscle:"Quads",v2:10,v3:12,note:"+2 sets (Thu block)"},
+    {muscle:"Triceps",v2:12,v3:12,note:"+ Lateral head via Kickback"},
+    {muscle:"Grip",v2:0,v3:3,note:"🆕 NEW direct work"},
+  ];
+  const barRows=vols.map(v=>{
+    const pct=Math.round((v.sets/v.max)*100);
+    return`<tr>
+      <td>${v.muscle}</td>
+      <td class="text-${v.color}" style="font-weight:900">${v.sets}</td>
+      <td><div class="vol-bar-track"><div class="vol-bar-fill" style="--w:${pct}%;background:var(--${v.color})"></div></div></td>
+      <td>${pill(v.freq,v.color)}<span class="small text-soft" style="margin-left:6px">${v.note}</span></td>
+    </tr>`;
+  }).join('');
+  el.innerHTML=`
+    ${sectionBadge('Weekly Volume','gold')}
+    <h2 class="sec-h">Volume by Muscle Group</h2>
+    <p class="sec-desc">Total direct weekly sets · ~95 working sets/week across all muscle groups</p>
+    <div class="card">
+      <table class="vol-table">${barRows}</table>
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('v3 vs v2','coral')}
+    <h2 class="sec-h">Version Comparison</h2>
+    <p class="sec-desc">Key volume and structural changes from v2 to v3</p>
+    <div class="card accent-coral">
+      <table class="data-table">
+        <thead><tr><th>Muscle</th><th>v2 Sets</th><th>v3 Sets</th><th>Change</th></tr></thead>
+        <tbody>
+          ${compare.map(c=>`<tr>
+            <td>${c.muscle}</td>
+            <td class="text-soft">${c.v2}</td>
+            <td class="${c.v3>c.v2?'text-emerald':'text-soft'}">${c.v3}</td>
+            <td>${c.note}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  // Trigger bar animations after render
+  setTimeout(()=>{
+    document.querySelectorAll('.vol-bar-fill').forEach(b=>{
+      b.style.animation='none';
+      b.offsetHeight;
+      b.style.animation='barFill 1s ease forwards';
+    });
+  },50);
+}
+
+// ─── RECOVERY ────────────────────────────────────────────────────────────────
+function renderRecovery(){
+  const el=document.getElementById('panel-recovery');
+  const shoulder=[
+    "No overhead pressing with elbow pain — swap to neutral grip or reduce load first",
+    "Face Pull 3×15-20 every session it appears (maintains rotator cuff resilience)",
+    "If shoulder impingement symptoms: pause Arnold Press, add band pull-apart superset",
+    "Pressing ROM check: full depth required — if grinding occurs, drop 10% and rebuild",
+    "Rear delt work is non-negotiable — underdeveloped posterior delt is the #1 shoulder injury cause"
+  ];
+  const plateau=[
+    {scenario:"Strength plateau (2+ sessions)",action:"Deload: reduce weight 5-10%, 1 week, then rebuild systematically"},
+    {scenario:"Joint/tendon discomfort",action:"Reduce volume by 30%, add recovery week, check form video"},
+    {scenario:"Motivation crash",action:"Reduce to 3 sessions for 2 weeks — maintenance mode beats zero"},
+    {scenario:"Life stress (work/travel)",action:"Home session with bodyweight + light DBs — never skip 2+ weeks"}
+  ];
+  el.innerHTML=`
+    ${sectionBadge('Recovery Pillars','gold')}
+    <div class="grid-2">
+      <div class="card accent-gold">
+        <div class="section-badge sb-gold" style="margin-bottom:10px">Sleep</div>
+        <div style="font-size:28px;font-weight:900;color:var(--gold);margin-bottom:6px">7.5-9 hrs</div>
+        <div class="card-sub">GH release peaks in slow-wave sleep. Sub-7h reduces testosterone by 10-15% (Leproult & Van Cauter 2011). Non-negotiable for muscle protein synthesis.</div>
+      </div>
+      <div class="card accent-steel">
+        <div class="section-badge sb-steel" style="margin-bottom:10px">Daily Steps</div>
+        <div style="font-size:28px;font-weight:900;color:var(--steel);margin-bottom:6px">8,000-10,000</div>
+        <div class="card-sub">Primary NEAT lever. Keeps insulin sensitivity high, supports caloric balance during lean bulk without adding fatigue. Use a step tracker.</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('Shoulder Management','coral')}
+    <h2 class="sec-h">Shoulder Protocol</h2>
+    <div class="card accent-coral">
+      <ul class="checklist">
+        ${shoulder.map(s=>`<li>${s}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('v3 Updates','gold')}
+    <div class="alert-box alert-gold">
+      <div class="alert-icon">🆕</div>
+      <div class="alert-body">
+        <div class="alert-title">Recovery Improvements in v3</div>
+        <div class="alert-text">
+          <ul style="list-style:none;padding:0;margin:0">
+            <li style="padding:4px 0;color:var(--soft)">✓ Thursday is no longer the densest session — shoulders fresh first reduces accumulated fatigue</li>
+            <li style="padding:4px 0;color:var(--soft)"><span class="text-gold">🆕</span> Weekly AMRAP RIR check allows faster detection of under-recovery (was every 2-3 weeks)</li>
+            <li style="padding:4px 0;color:var(--soft)"><span class="text-gold">🆕</span> Cycling on <strong>Saturday FORBIDDEN</strong> — leg day interference effect eliminates recovery benefit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    ${sectionBadge('Plateau Protocol','violet')}
+    <h2 class="sec-h">Plateau Response Guide</h2>
+    <div class="card accent-violet">
+      <table class="data-table">
+        <thead><tr><th>Scenario</th><th>Response</th></tr></thead>
+        <tbody>
+          ${plateau.map(p=>`<tr><td>${p.scenario}</td><td>${p.action}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="divider"></div>
+    <div class="alert-box alert-gold">
+      <div class="alert-icon">👑</div>
+      <div class="alert-body">
+        <div class="alert-title">The Golden Rule</div>
+        <div class="alert-text">If you are sleeping under 7 hours, not hitting your protein target, or dreading the gym — fix those first. No program can outperform poor recovery. The best program is the one you execute consistently over 12 months.</div>
+      </div>
+    </div>`;
+}
+
+// ─── TAB SWITCHING ──────────────────────────────────────────────────────────
+const renderMap={split:renderSplit,program:renderProgram,nutrition:renderNutrition,cycling:renderCycling,volume:renderVolume,recovery:renderRecovery};
+function switchTab(name,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  const panel=document.getElementById('panel-'+name);
+  panel.classList.add('active');
+  btn.classList.add('active');
+  if(!rendered[name]){renderMap[name]();rendered[name]=true;}
+  // Re-animate volume bars if switching to volume tab
+  if(name==='volume'){
+    setTimeout(()=>{
+      document.querySelectorAll('.vol-bar-fill').forEach(b=>{
+        b.style.animation='none';
+        b.offsetHeight;
+        b.style.animation='barFill 1s ease forwards';
+      });
+    },80);
+  }
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+renderSplit();
+rendered['split']=true;
+</script>
+</body>
+</html>
